@@ -4,15 +4,16 @@ import NewEmployee from "./NewEmployee";
 
 const Profile = (props) => {
     const { user, isAuthenticated } = useAuth0()
-    let allUserCards = props.allUsers.map(user => {
-        return (
-            <div key={user.id}>
-                <h2>{user.firstName} {user.lastName}</h2>
-                <h3>{user.email}</h3>
-            </div>
-        )
-    })
-    // if(props.allUsers){
+    
+    if(props.allUsers[0]){
+        let allUserCards = props.allUsers.map(user => {
+            return (
+                <div key={user.id}>
+                    <h2>{user.firstName} {user.lastName}</h2>
+                    <h3>{user.email}</h3>
+                </div>
+            )
+        })
     return (
         isAuthenticated &&
 
@@ -22,12 +23,12 @@ const Profile = (props) => {
             {/* <p>Email: {user.email}</p> */}
             {/* <p>ID: {user.sub}</p> */}
             {/* {JSON.stringify(user, null, 2)} */}
-            <NewEmployee/>
+            <NewEmployee addEmployee={props.addEmployee}/>
             <h1>Current Employees</h1>
             <hr/>
             {props.allUsers && allUserCards}
         </div>
-    )
+    )}
 }
 
 export default Profile
