@@ -26,4 +26,19 @@ const fetchApi = () => {
       })
   }
 
- export { fetchApi, postNewEmployee }
+  const deleteEmployee = (id) => {
+    return fetch(`http://localhost:8080/api/employees/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Unable to delete employee.")
+        } else {
+          return response.json()
+        }
+      })
+     
+  }
+
+ export { fetchApi, postNewEmployee, deleteEmployee }
