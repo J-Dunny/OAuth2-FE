@@ -11,6 +11,7 @@ const Profile = (props) => {
                 <div key={user.id}>
                     <h2>{user.firstName} {user.lastName}</h2>
                     <h3>{user.email}</h3>
+                    <button onClick={() => props.removeEmployee(user.id)}>Delete</button>
                 </div>
             )
         })
