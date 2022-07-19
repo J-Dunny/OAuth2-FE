@@ -3,7 +3,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
-import { fetchApi, postNewEmployee } from './ApiCalls';
+import { fetchApi, postNewEmployee, deleteEmployee } from './ApiCalls';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -16,9 +16,8 @@ function App() {
 
   const addEmployee = (newEmployee) => {
     postNewEmployee(newEmployee)
-    .then(response => console.log(response))
+    // .then(response => console.log(response))
     .then(response => setAllUsers(...allUsers, response))
-
   }
 
   if (isLoading) return <h1>Loading...</h1>
