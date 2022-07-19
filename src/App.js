@@ -20,6 +20,10 @@ function App() {
     .then(response => setAllUsers(...allUsers, response))
   }
 
+  const removeEmployee = (id) => [
+    deleteEmployee(id)
+  ]
+
   if (isLoading) return <h1>Loading...</h1>
 
 
@@ -27,7 +31,7 @@ function App() {
     <div >
       <LoginButton />
       <LogoutButton />
-      <Profile allUsers={allUsers} addEmployee={addEmployee} />
+      <Profile allUsers={allUsers} addEmployee={addEmployee} removeEmployee={removeEmployee}/>
     </div>
   );
 }
