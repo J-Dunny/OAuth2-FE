@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import NewEmployee from "./NewEmployee";
 
 const Profile = (props) => {
     const { user, isAuthenticated } = useAuth0()
@@ -21,13 +22,7 @@ const Profile = (props) => {
             {/* <p>Email: {user.email}</p> */}
             {/* <p>ID: {user.sub}</p> */}
             {/* {JSON.stringify(user, null, 2)} */}
-            <form>
-                <h1>Add New Employee</h1>
-                <input placeholder="First Name"/>
-                <input placeholder="Last Name"/>
-                <input placeholder="Email"/>
-                <button>Submit</button>
-            </form>
+            <NewEmployee/>
             <h1>Current Employees</h1>
             <hr/>
             {props.allUsers && allUserCards}
