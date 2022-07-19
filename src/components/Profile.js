@@ -5,7 +5,7 @@ import NewEmployee from "./NewEmployee";
 const Profile = (props) => {
     const { user, isAuthenticated } = useAuth0()
     
-    if(props.allUsers[0]){
+    if(isAuthenticated && props.allUsers[0]){
         let allUserCards = props.allUsers.map(user => {
             return (
                 <div key={user.id}>
@@ -15,8 +15,6 @@ const Profile = (props) => {
             )
         })
     return (
-        isAuthenticated &&
-
         <div>
             <img src={user.picture}/>
             <h2>Wecome {user.name}</h2>
@@ -26,7 +24,7 @@ const Profile = (props) => {
             <NewEmployee addEmployee={props.addEmployee}/>
             <h1>Current Employees</h1>
             <hr/>
-            {props.allUsers && allUserCards}
+            {allUserCards}
         </div>
     )}
 }
