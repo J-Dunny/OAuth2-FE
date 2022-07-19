@@ -14,6 +14,13 @@ function App() {
     fetchApi().then(data => setAllUsers(data))
   })
 
+  const addEmployee = (newEmployee) => {
+    postNewEmployee(newEmployee)
+    .then(response => console.log(response))
+    .then(response => setAllUsers(...allUsers, response))
+
+  }
+
   if (isLoading) return <h1>Loading...</h1>
 
 
@@ -21,7 +28,7 @@ function App() {
     <div >
       <LoginButton />
       <LogoutButton />
-      <Profile allUsers={allUsers} />
+      <Profile allUsers={allUsers} addEmployee={addEmployee} />
     </div>
   );
 }
