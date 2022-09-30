@@ -1,16 +1,19 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import NewEmployee from "./NewEmployee";
+import '../App.css';
 
 const Profile = (props) => {
     const { user, isAuthenticated } = useAuth0()
-    
+    // console.log(user)
     if(isAuthenticated && props.allUsers[0]){
         let allUserCards = props.allUsers.map(user => {
+
             return (
-                <div key={user.id}>
+                <div className="user-card" key={user.id}>
                     <h2>{user.firstName} {user.lastName}</h2>
                     <h3>{user.email}</h3>
+                    <p>Date Added: {user.createdAt}</p>
                     <button onClick={() => props.removeEmployee(user.id)}>Delete</button>
                 </div>
             )

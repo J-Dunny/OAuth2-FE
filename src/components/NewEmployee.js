@@ -24,7 +24,7 @@ const NewEmployee = (props) => {
     }
 
     return (
-        <form>
+        <form className="add-new">
             <h1>Add New Employee</h1>
             <input 
             type="text"
