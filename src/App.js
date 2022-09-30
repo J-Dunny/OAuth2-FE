@@ -7,22 +7,27 @@ import { fetchApi, postNewEmployee, deleteEmployee } from './ApiCalls';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [allUsers, setAllUsers] = useState()
+  const [allUsers, setAllUsers] = useState([])
   const { isLoading } = useAuth0()
 
   useEffect(() => {
-    fetchApi().then(data => setAllUsers(data))
-  })
+    getAllEmployees()
+  }, [])
 
+  const getAllEmployees = () => {
+    fetchApi().then(data => setAllUsers(data))
+  }
+  
   const addEmployee = (newEmployee) => {
     postNewEmployee(newEmployee)
-    // .then(response => console.log(response))
-    .then(response => setAllUsers(...allUsers, response))
+    .then(response => setAllUsers([...allUsers, response]))
   }
 
-  const removeEmployee = (id) => [
+  const removeEmployee = (id) => {
     deleteEmployee(id)
-  ]
+    const users = allUsers.filter(user => user.id != id)
+    setAllUsers(users)
+  }
 
   if (isLoading) return <h1>Loading...</h1>
 
